@@ -60,6 +60,7 @@ try:
     elif action == "create":
         print(createPullRequest(title, body, head, base))
     else:
-        print("meee")
+        print("{} is not a valid action value".format(action))
+        sys.exit(2)
 except NameError as error:
     print(error)
