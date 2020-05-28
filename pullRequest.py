@@ -24,12 +24,8 @@ for current_argument, current_value in arguments:
         head = current_value
     elif current_argument in ("--base"):
         base = current_value
-    elif current_argument in ("--author"):
-        author = current_value
     elif current_argument in ("--repo"):
         repo = current_value
-    elif current_argument in ("--github_user"):
-        github_user = current_value
     elif current_argument in ("--body"):
         body = current_value
     elif current_argument in ("--title"):
@@ -44,18 +40,18 @@ g = Github(os.environ["githubToken"])
 g_repo = g.get_repo(repo)
 
 
-def createPullRequest(PRtitle, PRbody, PRhead, PRbase):
+def createPullRequest(title, body, head, base):
     pr = g_repo.create_pull(
-        title=PRtitle, body=PRbody, head=PRhead, base=PRbase)
+        title=title, body=body, head=head, base=base)
     return(pr)
 
 
 def checkOpenPullRequest(base, head):
-    pulls = g_repo.get_pulls(base=base, state='open', head=head)
+    pulls = g_repo.get_pulls(state='open', head=head, base=base)
     pr_array = []
     for pr in pulls:
         pr_array.append(pr.number)
-        return(len(pr_array))
+    return(len(pr_array))
 
 
 try:
