@@ -5,9 +5,9 @@ import sys
 import getopt
 
 argument_list = sys.argv[1::]
-short_options = "a:h:b:t:r:u:d:t:"
-long_options = ["action=", "head=", "base=", "author=",
-                "repo=", "github_user=", "body=", "title="]
+short_options = "a:h:b:r:d:t:"
+long_options = ["action=", "head=", "base=",
+                "repo=",  "body=", "title="]
 
 try:
     arguments, values = getopt.getopt(
@@ -35,7 +35,8 @@ for current_argument, current_value in arguments:
     elif current_argument in ("--title"):
         title = current_value
     else:
-        print("{} not found".format(current_value))
+        print("'{} = {}' not a valid statement or argument".format(
+            current_argument, current_value))
         sys.exit(2)
 
 
