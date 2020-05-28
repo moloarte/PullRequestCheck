@@ -49,7 +49,7 @@ def createPullRequest(PRtitle, PRbody, PRhead, PRbase):
     return(pr)
 
 
-def checkOpenPullRequest(author, title, base, head):
+def checkOpenPullRequest(base, head):
     pulls = g_repo.get_pulls(base=base, state='open', head=head)
     pr_array = []
     for pr in pulls:
@@ -59,7 +59,7 @@ def checkOpenPullRequest(author, title, base, head):
 
 try:
     if action == "check":
-        print(checkOpenPullRequest(github_user, title, base, head))
+        print(checkOpenPullRequest(base, head))
     elif action == "create":
         print(createPullRequest(title, body, head, base))
     else:
