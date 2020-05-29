@@ -1,5 +1,4 @@
 from github import Github
-from github import Repository
 import os
 import sys
 import getopt
@@ -50,15 +49,21 @@ def checkOpenPullRequest(base, head):
     pulls = g_repo.get_pulls(state='open', head=head, base=base)
     pr_array = []
     for pr in pulls:
-        pr_array.append(pr.number)
-    return(len(pr_array))
+        pr_array.append(pr)
+    return(pr_array)
 
 
 try:
-    if action == "check":
+    if action == "list":
         print(checkOpenPullRequest(base, head))
     elif action == "create":
-        print(createPullRequest(title, body, head, base))
+        open_pr = checkOpenPullRequest(base, head)
+        if len(open_pr) == 0:
+            print(createPullRequest(title, body, head, base))
+        else:
+            for pr in open_pr:
+                print("There is already a pull request open for this branch see #{}".format(
+                    pr.number))
     else:
         print("{} is not a valid action value".format(action))
         sys.exit(2)
