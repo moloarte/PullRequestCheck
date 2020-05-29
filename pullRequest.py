@@ -1,5 +1,4 @@
 from github import Github
-from github import Repository
 import os
 import sys
 import getopt
