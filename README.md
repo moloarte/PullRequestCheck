@@ -1,8 +1,8 @@
 # Requirements
     pip3 install PyGithub
 # Usage
-## Check Pull Request
-This function will check the open pull request associated with a certain branch against a certain base.
+## List Pull Requests
+This function will list you the open pull request associated with a certain branch against a certain base.
 
 ```bash
 pullRequest.py --action check --repo nginx/nginx --head somebranch --base master
@@ -17,6 +17,7 @@ pullRequest.py --action check --repo nginx/nginx --head somebranch --base master
 
 ## Create Pull Request
 This function will create a new pull request from a certain branch against a certain base.
+Before creating it will check if a pull request has already been created or not and point you to its number
 
 ```bash
 pullRequest.py --action create --repo nginx/nginx --title "MyTitle" --body "Some Tale" --head somebranch  --base master    
